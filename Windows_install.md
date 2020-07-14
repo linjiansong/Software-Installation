@@ -3,7 +3,7 @@
 ## 原因分析：
 ```
 win8/win10系统均添加快速启动功能，预装的win8/win10电脑默认都是UEFI引导和GPT硬盘；
-传统的引导方式为Legacy引导和MBR硬盘，UEFI必须跟GPT对应，同理Legacy必须跟MBR对应。
+传统的引导方式为Legacy引导和MBR硬盘，UEFI必须跟GPT对应，同理Legacy必须跟MBR对应；
 如果BIOS开启UEFI，而硬盘分区表格式为MBR则无法安装；BIOS关闭UEFI而硬盘分区表格式为GPT也是无法安装Windows。
 ```
 ## 解决方式：
