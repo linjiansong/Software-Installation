@@ -5,7 +5,6 @@ Cartographer is a system that provides real-time simultaneous localization and m
 # Getting started without ROS
 Please see our ROS integration as a starting point for integrating your system with the standalone library. Currently, it is the best available reference.
 
-## Install the required libraries that are available as debs.
 * 添加依赖项
 ```
 sudo apt-get update
@@ -63,6 +62,7 @@ VERSION="v3.4.1"
 ```
 
 * 安装protobuf
+```
 git clone https://github.com/google/protobuf.git
 cd protobuf
 git checkout tags/${VERSION}
@@ -86,4 +86,27 @@ cmake .. -G Ninja
 ninja
 CTEST_OUTPUT_ON_FAILURE=1 ninja test
 sudo ninja install
+```
+# ROS中使用
+* 安装cartographer_ros
+```
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+catkin_init_workspace
+echo "source catkin_ws/devel/setup.bash" >> ~/.bashrc(我使用的是zsh终端，如果为bash终端，则是setup.zsh和~/.bashrc)
+source ~/.zshrc
+
+cd ~/catkin_ws/src
+git clone https://github.com/hitcm/cartographer_ros.git
+cd ~/catkin_ws
+catkin_make
+```
+
+* 测试
+[2D数据集下载链接](https://storage.googleapis.com/cartographer-public-data/bags/backpack_2d/cartographer_paper_deutsches_museum.bag)
+```
+# 2D (第三个参数为下载数据集路径)
+roslaunch cartographer_ros demo_backpack_2d.launch bag_filename:=${HOME}/Downloads/cartographer_paper_deutsches_museum.bag
+# 3D (第三个参数为下载数据集路径)
+roslaunch cartographer_ros demo_backpack_3d.launch bag_filename:=${HOME}/Downloads/cartographer_3d_deutsches_museum.bag
 ```
